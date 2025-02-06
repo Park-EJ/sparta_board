@@ -7,6 +7,7 @@ import com.example.board.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class MemberService { // 확장될 가능성이 없다면 Interface가 �
         return new MemberResponseDto(findMember.getUsername(), findMember.getAge());
     }
 
+    @Transactional
     public void updatePassword(Long id, String oldPassword, String newPassword) {
 
         Member findMember = memberRepository.findByIdOrElseThrow(id);
