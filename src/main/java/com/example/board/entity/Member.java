@@ -1,7 +1,9 @@
 package com.example.board.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 @Table(name = "member") // member 테이블과 매핑. 만약 @Table을 생략하면 클래스명(Member)을 테이블 이름으로 자동 설정함
 public class Member extends BaseEntity { // BaseEntity를 상속받은 Entity는 별도의 설정 없이 자동으로 생성/수정 시간을 관리할 수 있습니다.
@@ -18,9 +20,19 @@ public class Member extends BaseEntity { // BaseEntity를 상속받은 Entity는
 
     private Integer age;
 
+    public Member() {
+    } // @Entity가 붙은 클래스는 기본생성자가 필요하다.
 
+    public Member(String username, String password, Integer age) { // id는 자동생성되니 제외한다.
+        this.username = username;
+        this.password = password;
+        this.age = age;
+    }
 
-
+    // Setter 사용하고 변수명 updatePassword 로 변결
+    public void updatePassword(String password) {
+        this.password = password;
+    }
 
 
 }
