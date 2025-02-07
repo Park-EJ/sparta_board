@@ -1,7 +1,9 @@
 package com.example.board.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 @Table(name = "board")
 public class Board extends BaseEntity {
@@ -23,4 +25,15 @@ public class Board extends BaseEntity {
     // => DB Board 테이블에는 회원 정보를 직접 저장하는 것이 아니라, Member 테이블의 id 값을 외래 키(FK)로 저장
     // 즉, member 필드는 Board 테이블의 member_id(FK)를 통해 Member Entity(테이블)와 연결
 
+    public Board() {
+    } // @Entity가 붙은 클래스는 기본생성자가 필요하다.
+
+    public Board(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }
