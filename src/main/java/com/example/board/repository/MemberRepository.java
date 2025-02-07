@@ -12,6 +12,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // <Member → 이 Repository가 관리할 Entity 클래스
     // Long> → Member Entity의 기본키(PK) 타입
 
+    // Optional<Member>를 반환하므로, 조회 결과가 존재하지 않을 경우 Optional.empty()를 반환한다. null로 인해 발생할 수 있는 NullPointerException을 방지할 수 있다.
     Optional<Member> findMembersByUsername(String username); // Query Methods 활용
 
     default Member findMembersByUsernameOrElseThrow(String username) { // Default 메서드 활용
